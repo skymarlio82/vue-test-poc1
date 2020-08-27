@@ -41,14 +41,14 @@ export const asyncRouterMap = [
     redirect: '/user/',
     name: '用户权限',
     hidden: false,
-    meta: { title: '用户权限', icon: 'table' },
+    meta: { title: '用户权限', icon: 'icon-infopersonal' },
     children: [
       {
         path: '',
         name: '用户列表',
         hidden: false,
         component: () => import('@/views/user/UserList'),
-        meta: { title: '用户列表', icon: 'user' },
+        meta: { title: '用户列表', icon: 'icon-groupctrl' },
         menu: 'user'
       },
       {
@@ -56,7 +56,7 @@ export const asyncRouterMap = [
         name: '权限管理',
         hidden: false,
         component: () => import('@/views/P404'),
-        meta: { title: '权限管理', icon: 'password' },
+        meta: { title: '权限管理', icon: 'icon-safety' },
         menu: 'role'
       }
     ]

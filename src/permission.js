@@ -14,7 +14,7 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     } else if (store.getters.roleName === '') {
       store.dispatch('GetInfo').then(() => {
-        next({ ...to })
+        next()
       })
     } else {
       next()

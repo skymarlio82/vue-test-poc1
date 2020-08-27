@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-import ElementUI from 'element-ui'
-import locale from 'element-ui/lib/locale/lang/zh-CN'
+// import ElementUI from 'element-ui'
+// import locale from 'element-ui/lib/locale/lang/zh-CN'
 import 'normalize.css/normalize.css'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -20,7 +20,7 @@ import { hasPerm } from './utils/hasPerm'
 import '@/assets/fonts/iconfont.css'
 import './permission'
 
-Vue.use(ElementUI, { locale })
+// Vue.use(ElementUI, { locale })
 
 Vue.prototype.api = api
 Vue.prototype.hasPerm = hasPerm

@@ -10,7 +10,7 @@ const user = {
     userName: '',
     roleName: '',
     token: '',
-    avatar: '../../assets/img/avatar1.png'
+    avatar: 'https://pic-oss.oss-cn-beijing.aliyuncs.com/test_imgs/jojo_icon.png'
   },
   mutations: {
     SET_USER: (state, userInfo) => {

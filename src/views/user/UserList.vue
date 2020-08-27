@@ -62,10 +62,12 @@
 </template>
 
 <script>
+import { Table, TableColumn, Tag, Button, Pagination, Dialog, Form, FormItem, Input } from 'element-ui'
 // eslint-disable-next-line import/no-named-default
 import { default as api } from '@/utils/api'
 
 export default {
+  name: 'UserList',
   created () {
     this.getAllUsers()
   },
@@ -137,6 +139,17 @@ export default {
     showDisplayedRows: function () {
       this.userList = this.userListOrigin.slice((this.listQuery.pageNum - 1) * this.listQuery.pageRow, this.listQuery.pageNum * this.listQuery.pageRow)
     }
+  },
+  components: {
+    [Table.name]: Table,
+    [TableColumn.name]: TableColumn,
+    [Tag.name]: Tag,
+    [Button.name]: Button,
+    [Pagination.name]: Pagination,
+    [Dialog.name]: Dialog,
+    [Form.name]: Form,
+    [FormItem.name]: FormItem,
+    [Input.name]: Input
   }
 }
 </script>

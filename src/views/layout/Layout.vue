@@ -9,19 +9,19 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from '@/views/layout/components'
+import { Sidebar, Navbar, AppMain } from '@/views/layout/components'
 
 export default {
   name: 'layout',
-  components: {
-    Navbar,
-    Sidebar,
-    AppMain
-  },
   computed: {
     sidebar () {
       return this.$store.state.app.sidebar
     }
+  },
+  components: {
+    Sidebar,
+    Navbar,
+    AppMain
   }
 }
 </script>

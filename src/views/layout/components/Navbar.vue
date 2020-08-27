@@ -9,10 +9,10 @@
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
-          <el-dropdown-item><svg-icon :icon-class="'dashboard'"></svg-icon>&nbsp;&nbsp;Home</el-dropdown-item>
+          <el-dropdown-item><i class="iconfont icon-menu" ></i>Home</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span @click="logout" style="display:block;"><svg-icon :icon-class="'link'"></svg-icon>&nbsp;&nbsp;Logout</span>
+          <span @click="logout" style="display:block;"><i class="iconfont icon-privac_open" ></i>Logout</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -21,14 +21,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
+import { Menu, Dropdown, DropdownMenu, DropdownItem } from 'element-ui'
 import Hamburger from '@/components/Hamburger'
+import Breadcrumb from '@/components/Breadcrumb'
 
 export default {
-  components: {
-    Breadcrumb,
-    Hamburger
-  },
+  name: 'Navbar',
   computed: {
     ...mapGetters([
       'sidebar',
@@ -44,6 +42,14 @@ export default {
         location.reload()
       })
     }
+  },
+  components: {
+    [Menu.name]: Menu,
+    [Dropdown.name]: Dropdown,
+    [DropdownMenu.name]: DropdownMenu,
+    [DropdownItem.name]: DropdownItem,
+    [Hamburger.name]: Hamburger,
+    [Breadcrumb.name]: Breadcrumb
   }
 }
 </script>

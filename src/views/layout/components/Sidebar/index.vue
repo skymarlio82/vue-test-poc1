@@ -1,27 +1,33 @@
 <template>
-<scroll-bar>
-  <el-menu mode="vertical"
-    unique-opened
-    :default-active="$route.path"
-    :collapse="isCollapse"
-    background-color="#304156"
-    text-color="#fff"
-    active-text-color="#409EFF">
-    <sidebar-item :routes="permission_routers"></sidebar-item>
-  </el-menu>
-</scroll-bar>
+  <scroll-bar>
+    <el-menu mode="vertical"
+             unique-opened
+             :default-active="$route.path"
+             :collapse="isCollapse"
+             background-color="#304156"
+             text-color="#fff"
+             active-text-color="#409EFF">
+      <router-link :to="'/'" :key="'menu-item-0'">
+        <el-menu-item :index="'menu-item-0'" class='submenu-title-noDropdown'>
+          <i class="iconfont icon-menu"></i> <span>JUST DO IT.</span>
+        </el-menu-item>
+      </router-link>
+      <sidebar-item :routes="permissionRouters"></sidebar-item>
+    </el-menu>
+  </scroll-bar>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import SidebarItem from './SidebarItem'
+import { Menu, MenuItem } from 'element-ui'
 import ScrollBar from '@/components/ScrollBar'
+import SidebarItem from './SidebarItem'
 
 export default {
-  components: { SidebarItem, ScrollBar },
+  name: 'Sidebar',
   computed: {
     ...mapGetters([
-      'permission_routers',
+      'permissionRouters',
       'sidebar'
     ]),
     isCollapse () {
@@ -30,7 +36,13 @@ export default {
   },
   mounted () {
     console.log('sidebar:=', this.sidebar)
-    console.log('permission_routers:=', this.permission_routers)
+    console.log('permissionRouters:=', this.permissionRouters)
+  },
+  components: {
+    [Menu.name]: Menu,
+    [MenuItem.name]: MenuItem,
+    [ScrollBar.name]: ScrollBar,
+    [SidebarItem.name]: SidebarItem
   }
 }
 </script>
