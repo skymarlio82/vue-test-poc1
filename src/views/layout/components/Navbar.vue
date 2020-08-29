@@ -9,7 +9,7 @@
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class="inlineBlock" to="/">
-          <el-dropdown-item><i class="iconfont icon-menu" ></i>Home</el-dropdown-item>
+          <el-dropdown-item><i class="iconfont icon-home" ></i>Home</el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
           <span @click="logout" style="display:block;"><i class="iconfont icon-privac_open" ></i>Logout</span>

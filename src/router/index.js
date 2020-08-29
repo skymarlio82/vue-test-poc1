@@ -65,23 +65,23 @@ export const asyncRouterMap = [
     path: '/account',
     component: () => import('@/views/layout/Layout'),
     redirect: 'noredirect',
-    name: '账户细节',
+    name: '账户配置',
     hidden: false,
-    meta: { title: '账户细节', icon: 'icon-nickname' },
+    meta: { title: '账户配置', icon: 'icon-nickname' },
     children: [
       {
         path: 'profile',
         name: '账户信息',
         hidden: false,
-        component: () => import('@/views/user/UserList'),
+        component: () => import('@/views/P404'),
         meta: { title: '账户信息', icon: 'icon-addresslist' }
       },
       {
-        path: 'logout',
-        name: '账户登出',
+        path: 'config',
+        name: '配置信息',
         hidden: false,
         component: () => import('@/views/P404'),
-        meta: { title: '账户登出', icon: 'icon-privac_open' }
+        meta: { title: '配置信息', icon: 'icon-menu' }
       }
     ]
   },

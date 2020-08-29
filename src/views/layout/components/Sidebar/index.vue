@@ -9,7 +9,7 @@
              active-text-color="#409EFF">
       <router-link :to="'/'" :key="'menu-item-0'">
         <el-menu-item :index="'menu-item-0'" class='submenu-title-noDropdown'>
-          <i class="iconfont icon-menu"></i> <span>JUST DO IT.</span>
+          <i class="iconfont icon-home"></i> <span>JUST DO IT.</span>
         </el-menu-item>
       </router-link>
       <sidebar-item :routes="permissionRouters"></sidebar-item>
