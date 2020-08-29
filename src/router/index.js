@@ -18,7 +18,7 @@ export const constantRouterMap = [
     path: '/',
     component: () => import('@/views/layout/Layout'),
     redirect: '/dashboard',
-    name: '首页',
+    name: 'dashboard',
     hidden: true,
     children: [
       {
@@ -38,13 +38,13 @@ export const asyncRouterMap = [
   {
     path: '/user',
     component: () => import('@/views/layout/Layout'),
-    redirect: '/user/',
+    redirect: 'noredirect',
     name: '用户权限',
     hidden: false,
     meta: { title: '用户权限', icon: 'icon-infopersonal' },
     children: [
       {
-        path: '',
+        path: 'list',
         name: '用户列表',
         hidden: false,
         component: () => import('@/views/user/UserList'),
@@ -58,6 +58,30 @@ export const asyncRouterMap = [
         component: () => import('@/views/P404'),
         meta: { title: '权限管理', icon: 'icon-safety' },
         menu: 'role'
+      }
+    ]
+  },
+  {
+    path: '/account',
+    component: () => import('@/views/layout/Layout'),
+    redirect: 'noredirect',
+    name: '账户细节',
+    hidden: false,
+    meta: { title: '账户细节', icon: 'icon-nickname' },
+    children: [
+      {
+        path: 'profile',
+        name: '账户信息',
+        hidden: false,
+        component: () => import('@/views/user/UserList'),
+        meta: { title: '账户信息', icon: 'icon-addresslist' }
+      },
+      {
+        path: 'logout',
+        name: '账户登出',
+        hidden: false,
+        component: () => import('@/views/P404'),
+        meta: { title: '账户登出', icon: 'icon-privac_open' }
       }
     ]
   },

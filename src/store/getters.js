@@ -9,7 +9,11 @@ const getters = {
   avatar: state => state.user.avatar,
 
   permissionRouters: state => state.permission.routers,
-  addRouters: state => state.permission.addRouters
+  addRouters: state => state.permission.addRouters,
+  allUsers: state => state.user.allUsers,
+
+  chartData: state => state.test.chartData,
+  chartData1: state => state.test.chartData1
 }
 
 export default getters

@@ -10,7 +10,8 @@ const user = {
     userName: '',
     roleName: '',
     token: '',
-    avatar: 'https://pic-oss.oss-cn-beijing.aliyuncs.com/test_imgs/jojo_icon.png'
+    avatar: 'https://pic-oss.oss-cn-beijing.aliyuncs.com/test_imgs/jojo_icon.png',
+    allUsers: []
   },
   mutations: {
     SET_USER: (state, userInfo) => {
@@ -26,6 +27,9 @@ const user = {
       state.userName = ''
       state.roleName = ''
       state.token = ''
+    },
+    SET_ALL_USERS: (state, allUsers) => {
+      state.allUsers = allUsers
     }
   },
   actions: {
@@ -57,6 +61,19 @@ const user = {
           store.dispatch('GenerateRoutes', data).then(() => {
             router.addRoutes(store.getters.addRouters)
           })
+          resolve(data)
+        }).catch((error) => {
+          reject(error)
+        })
+      })
+    },
+    GetAllUsers ({ commit }) {
+      return new Promise((resolve, reject) => {
+        api({
+          url: 'getAllUsers',
+          method: 'get'
+        }).then((data) => {
+          commit('SET_ALL_USERS', data)
           resolve(data)
         }).catch((error) => {
           reject(error)
