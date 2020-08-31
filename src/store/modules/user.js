@@ -10,14 +10,13 @@ const user = {
     userName: '',
     roleName: '',
     token: '',
-    avatar: 'https://pic-oss.oss-cn-beijing.aliyuncs.com/test_imgs/jojo_icon.png',
-    allUsers: []
+    avatar: 'https://pic-oss.oss-cn-beijing.aliyuncs.com/test_imgs/jojo_icon.png'
   },
   mutations: {
     SET_USER: (state, userInfo) => {
-      state.userId = userInfo.userId
-      state.userName = userInfo.userName
-      state.roleName = userInfo.roleName
+      state.userId = userInfo.id
+      state.userName = userInfo.username
+      state.roleName = userInfo.authorities[0]
     },
     SET_TOKEN: (state, token) => {
       state.token = token
@@ -27,16 +26,13 @@ const user = {
       state.userName = ''
       state.roleName = ''
       state.token = ''
-    },
-    SET_ALL_USERS: (state, allUsers) => {
-      state.allUsers = allUsers
     }
   },
   actions: {
     Login ({ commit }, loginForm) {
       return new Promise((resolve, reject) => {
         api({
-          url: 'auth',
+          url: 'login/native',
           method: 'post',
           data: loginForm
         }).then((data) => {
@@ -51,29 +47,24 @@ const user = {
         })
       })
     },
+    SetOauth2Token ({ commit }, oauth2Token) {
+      return new Promise((resolve) => {
+        setLoginStatus()
+        setTokenKey(oauth2Token)
+        commit('SET_TOKEN', oauth2Token)
+        resolve(oauth2Token)
+      })
+    },
     GetInfo ({ commit }) {
       return new Promise((resolve, reject) => {
         api({
-          url: 'getInfo',
+          url: 'api/user/me',
           method: 'get'
         }).then((data) => {
           commit('SET_USER', data)
           store.dispatch('GenerateRoutes', data).then(() => {
             router.addRoutes(store.getters.addRouters)
           })
-          resolve(data)
-        }).catch((error) => {
-          reject(error)
-        })
-      })
-    },
-    GetAllUsers ({ commit }) {
-      return new Promise((resolve, reject) => {
-        api({
-          url: 'getAllUsers',
-          method: 'get'
-        }).then((data) => {
-          commit('SET_ALL_USERS', data)
           resolve(data)
         }).catch((error) => {
           reject(error)

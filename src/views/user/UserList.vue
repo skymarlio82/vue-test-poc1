@@ -38,12 +38,12 @@
             </el-table-column>
             <el-table-column label="Role">
               <template slot-scope="scope">
-                <el-tag type="success" size="small" v-if="scope.row.roleName==='ROLE_ADMIN'">Administrator</el-tag>
-                <el-tag type="warning" size="small" v-else-if="scope.row.roleName==='ROLE_USER'">Normal user</el-tag>
+                <el-tag type="success" size="small" v-if="scope.row.roleName==='ROLE_ADMIN'">ROLE_ADMIN</el-tag>
+                <el-tag type="warning" size="small" v-else-if="scope.row.roleName==='ROLE_USER'">ROLE_USER</el-tag>
               </template>
             </el-table-column>
           </el-table-column>
-          <el-table-column label="Actions" v-if="hasPerm(['ROLE_ADMIN', 'ROLE_USER'])">
+          <el-table-column label="Actions" v-if="hasPerm(['ROLE_ADMIN'])">
             <template slot-scope="scope">
               <el-button type="text" icon="el-icon-edit" @click="showUpdate(scope.$index)">Edit</el-button>
             </template>
@@ -70,19 +70,25 @@
           <el-input type="password" v-model="tempUser.password"></el-input>
         </el-form-item>
         <el-form-item label="Role">
-          <el-input type="text" v-model="tempUser.roleName"></el-input>
+          <el-select v-model="tempUser.roleName" placeholder="请选择">
+            <el-option v-for="item in ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ANONYMOUS']"
+                       :key="item"
+                       :label="item"
+                       :value="item">
+            </el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible=false">Cancel</el-button>
-        <el-button type="primary">Update</el-button>
+        <el-button type="primary" @click="updateUser">Update</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { Table, TableColumn, Tag, Button, Pagination, Dialog, Form, FormItem, Input, Row, Col, Tabs, TabPane } from 'element-ui'
+import { Table, TableColumn, Tag, Button, Pagination, Dialog, Form, FormItem, Input, Row, Col, Select, Option } from 'element-ui'
 import VeLine from 'v-charts/lib/line.common'
 import VeHistogram from 'v-charts/lib/histogram.common'
 import VePie from 'v-charts/lib/pie.common'
@@ -171,6 +177,12 @@ export default {
       this.tempUser.password = ''
       this.dialogFormVisible = true
     },
+    updateUser () {
+      console.log('updating the user data ...')
+      this.getAllUsers()
+      this.getChartDatas()
+      this.dialogFormVisible = false
+    },
     showDisplayedRows () {
       this.userList = this.userListOrigin.slice((this.listQuery.pageNum - 1) * this.listQuery.pageRow, this.listQuery.pageNum * this.listQuery.pageRow)
     }
@@ -187,8 +199,8 @@ export default {
     [Input.name]: Input,
     [Row.name]: Row,
     [Col.name]: Col,
-    [Tabs.name]: Tabs,
-    [TabPane.name]: TabPane,
+    [Select.name]: Select,
+    [Option.name]: Option,
     [VeLine.name]: VeLine,
     [VeHistogram.name]: VeHistogram,
     [VePie.name]: VePie,

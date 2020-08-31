@@ -39,7 +39,8 @@ export default {
     },
     logout () {
       this.$store.dispatch('LogOut').then(() => {
-        location.reload()
+        // location.reload()
+        window.location.href = 'http://localhost:8080/station-finder'
       })
     }
   },

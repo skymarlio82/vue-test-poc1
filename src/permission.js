@@ -4,7 +4,7 @@ import { getLoginStatus } from '@/utils/auth'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-const whiteList = ['/login', '/404']
+const whiteList = ['/login', '/404', '/oauth2Token']
 
 router.beforeEach((to, from, next) => {
   NProgress.start()

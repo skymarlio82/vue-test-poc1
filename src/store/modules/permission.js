@@ -1,4 +1,4 @@
-import { constantRouterMap, asyncRouterMap } from '@/router/index'
+import { asyncRouterMap, constantRouterMap } from '@/router/index'
 
 function hasPermission (menus, route) {
   if (route.menu) {
@@ -9,7 +9,7 @@ function hasPermission (menus, route) {
 }
 
 function filterAsyncRouter (asyncRouterMap, menus) {
-  const accessedRouters = asyncRouterMap.filter(route => {
+  return asyncRouterMap.filter(route => {
     if (hasPermission(menus, route)) {
       if (route.children && route.children.length) {
         route.children = filterAsyncRouter(route.children, menus)
@@ -17,9 +17,11 @@ function filterAsyncRouter (asyncRouterMap, menus) {
       }
       return true
     }
+    if (route.path === '*') {
+      return true
+    }
     return false
   })
-  return accessedRouters
 }
 
 const permission = {
@@ -36,14 +38,13 @@ const permission = {
   actions: {
     GenerateRoutes ({ commit }, userData) {
       return new Promise((resolve) => {
-        const role = userData.roleName
-        const menus = userData.menuList
-        console.log('userRole: ', role)
+        const roles = userData.authorities
+        console.log('userRole: ', roles)
         let accessedRouters
-        if (role === 'ROLE_ADMIN') {
+        if (roles.includes('ROLE_ADMIN')) {
           accessedRouters = asyncRouterMap
         } else {
-          accessedRouters = filterAsyncRouter(asyncRouterMap, menus)
+          accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         }
         commit('SET_ROUTERS', accessedRouters)
         resolve()

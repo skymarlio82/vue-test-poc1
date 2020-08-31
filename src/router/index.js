@@ -15,6 +15,11 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/oauth2Token',
+    component: () => import('@/views/POauth2Token'),
+    hidden: true
+  },
+  {
     path: '/',
     component: () => import('@/views/layout/Layout'),
     redirect: '/dashboard',
@@ -49,7 +54,7 @@ export const asyncRouterMap = [
         hidden: false,
         component: () => import('@/views/user/UserList'),
         meta: { title: '用户列表', icon: 'icon-groupctrl' },
-        menu: 'user'
+        menu: 'ROLE_ADMIN'
       },
       {
         path: 'role',
@@ -57,7 +62,7 @@ export const asyncRouterMap = [
         hidden: false,
         component: () => import('@/views/P404'),
         meta: { title: '权限管理', icon: 'icon-safety' },
-        menu: 'role'
+        menu: 'ROLE_ADMIN'
       }
     ]
   },
@@ -74,14 +79,16 @@ export const asyncRouterMap = [
         name: '账户信息',
         hidden: false,
         component: () => import('@/views/P404'),
-        meta: { title: '账户信息', icon: 'icon-addresslist' }
+        meta: { title: '账户信息', icon: 'icon-addresslist' },
+        menu: 'ROLE_USER'
       },
       {
         path: 'config',
         name: '配置信息',
         hidden: false,
         component: () => import('@/views/P404'),
-        meta: { title: '配置信息', icon: 'icon-menu' }
+        meta: { title: '配置信息', icon: 'icon-menu' },
+        menu: 'ROLE_USER'
       }
     ]
   },

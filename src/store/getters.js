@@ -10,8 +10,8 @@ const getters = {
 
   permissionRouters: state => state.permission.routers,
   addRouters: state => state.permission.addRouters,
-  allUsers: state => state.user.allUsers,
 
+  allUsers: state => state.test.allUsers,
   chartData: state => state.test.chartData,
   chartData1: state => state.test.chartData1
 }
