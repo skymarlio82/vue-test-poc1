@@ -137,8 +137,10 @@ $light_gray: #eee;
     left: 0;
     right: 0;
     width: 385px;
-    padding: 35px 35px 15px 35px;
-    margin: 175px auto;
+    padding: 35px 35px 35px 35px;
+    margin: 17% auto;
+    background-color: #304156;
+    border-radius: 5px;
   }
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
