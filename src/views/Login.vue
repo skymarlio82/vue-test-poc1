@@ -138,7 +138,7 @@ $light_gray: #eee;
     right: 0;
     width: 385px;
     padding: 35px 35px 35px 35px;
-    margin: 17% auto;
+    margin: 12% auto;
     background-color: #304156;
     border-radius: 5px;
   }

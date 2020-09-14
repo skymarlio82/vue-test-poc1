@@ -28,17 +28,22 @@ api.interceptors.response.use(
   (response) => {
     const res = response.data
     console.log('response from remote: ', res)
-    return res
+    if (res.code === 0) {
+      return Promise.resolve(res.data)
+    } else {
+      Message({
+        message: '<strong>' + res.message + '<br>(Maybe session timeout, please press "F5" to refresh)</strong>',
+        type: 'error',
+        showClose: true,
+        dangerouslyUseHTMLString: true,
+        duration: 30 * 1000
+      })
+      return Promise.reject(res)
+    }
   },
   (error) => {
     removeLoginStatus()
-    Message({
-      message: '<strong>&nbsp;' + error.message + '<br>(Maybe session timeout, please press "F5" to refresh)&nbsp;</strong>',
-      type: 'error',
-      showClose: true,
-      dangerouslyUseHTMLString: true,
-      duration: 30 * 1000
-    })
+    window.location.href = '/'
     return Promise.reject(error)
   }
 )
