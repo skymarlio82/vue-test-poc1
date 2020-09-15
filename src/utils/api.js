@@ -32,10 +32,11 @@ api.interceptors.response.use(
       return Promise.resolve(res.data)
     } else {
       Message({
-        message: '<strong>' + res.message + '<br>(Maybe session timeout, please press "F5" to refresh)</strong>',
+        message: 'Error message from server:<br><strong>' + res.message + '</strong>',
         type: 'error',
         showClose: true,
         dangerouslyUseHTMLString: true,
+        center: true,
         duration: 30 * 1000
       })
       return Promise.reject(res)
